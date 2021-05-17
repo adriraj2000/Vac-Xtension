@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Vacxtension",
+    "version": "0.1.0",
+  
+    "host_permissions":[
+      "http://*/*", "https://*/*"
+    ],
+  
+    "permissions":[
+      "alarms","storage"
+    ],
+  
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "128": "vaccine.png"
+      }
+    },
+  
+    "icons":{
+      "48":"vaccine.png"
+    },
+  
+    "background": {
+      "service_worker": "background.js"
+    }
+  
+  }

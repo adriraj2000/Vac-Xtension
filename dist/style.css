@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.container {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  width: 250px;
+  margin: 1.5rem;
+}
+
+/*For enabling dark mode*/
+.dark-mode {
+  background: #333;
+  color: #fff !important;
+}
+
+.enter-pincode {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.result {
+  margin-top: 1em;
+}
+
+form input {
+  margin: 15px 0;
+  padding: 12px 10px;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -ms-transition: 0.2s ease all;
+  -o-transition: 0.2s ease all;
+  transition: 0.2s ease all;
+}
+
+form input[type="text"]:focus {
+  border-color: cornflowerblue;
+}
+
+.search-btn {
+  padding: 10px 30px;
+  width: auto;
+  background: #0b0e9c;
+  border: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: inline-block;
+  clear: right;
+  -webkit-transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -ms-transition: 0.2s ease all;
+  -o-transition: 0.2s ease all;
+  transition: 0.2s ease all;
+}
+
+.search-btn :hover {
+  opacity: 0.8;
+}
+
+.search-btn:active {
+  opacity: 0.4;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dark-control {
+  text-align: right;
+  color: #666;
+  text-decoration: underline;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 18px 0px 0px 0px;
+  margin-left: auto;
+}
+
+.noSlots {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.stop-tracking {
+  text-align: left;
+  color: #666;
+  text-decoration: underline;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 18px 0px 0px 0px;
+}
