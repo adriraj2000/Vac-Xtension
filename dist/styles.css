@@ -2,12 +2,11 @@
 
 .container {
   font-family: "Open Sans", sans-serif;
+  margin: 1.5em;
   text-align: center;
   width: 250px;
-  margin: 1.5rem;
 }
 
-/*For enabling dark mode*/
 .dark-mode {
   background: #333;
   color: #fff !important;
@@ -39,16 +38,17 @@ form input {
   transition: 0.2s ease all;
 }
 
-form input[type="text"]:focus {
+form input[type="text"]:focus,
+form input[type="password"]:focus {
   border-color: cornflowerblue;
 }
 
 .search-btn {
   padding: 10px 30px;
   width: auto;
-  background: #0b0e9c;
+  background: #1abc9c;
   border: none;
-  color: rgb(255, 255, 255);
+  color: white;
   cursor: pointer;
   display: inline-block;
   clear: right;
@@ -59,7 +59,7 @@ form input[type="text"]:focus {
   transition: 0.2s ease all;
 }
 
-.search-btn :hover {
+.search-btn:hover {
   opacity: 0.8;
 }
 
@@ -67,9 +67,14 @@ form input[type="text"]:focus {
   opacity: 0.4;
 }
 
-.footer {
-  display: flex;
-  justify-content: space-between;
+.noSlots {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.bd-top {
+  border-top: 1px solid #eee;
+  padding-top: 5px;
 }
 
 .dark-control {
@@ -82,9 +87,13 @@ form input[type="text"]:focus {
   margin-left: auto;
 }
 
-.noSlots {
-  font-size: 14px;
-  font-weight: 500;
+.dark-mode .dark-control {
+  color: #fafafa;
+}
+
+.footer-controls {
+  display: flex;
+  justify-content: space-between;
 }
 
 .stop-tracking {
@@ -94,4 +103,8 @@ form input[type="text"]:focus {
   font-size: 10px;
   cursor: pointer;
   padding: 18px 0px 0px 0px;
+}
+
+.dark-mode .stop-tracking {
+  color: #fafafa;
 }

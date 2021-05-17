@@ -1,21 +1,25 @@
 import axios from "axios";
-
 const api =
   "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByPin";
+
 
 const body = document.querySelector(".container");
 const errors = document.querySelector(".errors");
 const loading = document.querySelector(".loading");
-const error_message = document.querySelector(".error-message");
+const results = document.querySelector(".results");
 const noSlots = document.querySelector(".noSlots");
-const recovered = document.querySelector(".recovered");
+const available = document.querySelector(".available");
 const slots = document.querySelector(".slots");
-const results = document.querySelector(".result-container");
+const result_list = document.querySelector(".result-container");
 const tracking = document.querySelector(".tracking");
 const trackingControl = document.querySelector(".stop-tracking");
-results.style.display = "none";
+
+
+result_list.style.display = "none";
 loading.style.display = "none";
 errors.textContent = "";
+
+
 // grab the form
 const form = document.querySelector(".form-data");
 // grab the pin code
@@ -33,7 +37,7 @@ chrome.storage.sync.get(
       // load pin code from cache
       if (pin_code) {
         pin.value = pin_code;
-        results.style.display = "block";
+        result_list.style.display = "block";
       }
 
       // Load last run job timestamp
@@ -59,7 +63,7 @@ chrome.storage.sync.get(
       // if a last found slot exist then we show that to the user
       if (last_found_slot) {
         const { center, session } = last_found_slot;
-        recovered.textContent =
+        available.textContent =
           center.name +
           " (" +
           session.available_capacity +
@@ -77,7 +81,7 @@ chrome.storage.sync.get(
   }
 );
 
-const getCurrentDate = () => {
+const getToday = () => {
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -89,8 +93,8 @@ const getCurrentDate = () => {
 
 // searching slots by pin code
 const searchForStock = async (pin) => {
-  const today = getCurrentDate();
-  console.log(today);
+  const today = getToday();
+  console.log("Date today -> " + today);
   loading.style.display = "block";
   errors.textContent = "";
   try {
@@ -105,8 +109,8 @@ const searchForStock = async (pin) => {
     response.data.centers.forEach((center) => {
       center.sessions.forEach((session) => {
         if (session.min_age_limit >= 18 && session.available_capacity > 0) {
-          error_message.textContent = "A slot was found";
-          recovered.textContent =
+          results.textContent = "A slot was found";
+          available.textContent =
             center.name +
             " (" +
             session.available_capacity +
@@ -137,11 +141,11 @@ const searchForStock = async (pin) => {
         noSlots.textContent = "No slots found yet. Last run on: " + new Date();
       }
     });
-    results.style.display = "block";
+    result_list.style.display = "block";
   } catch (error) {
     console.log(error);
     loading.style.display = "none";
-    results.style.display = "none";
+    result_list.style.display = "none";
     errors.textContent = "There was an error processing the request";
   }
 };

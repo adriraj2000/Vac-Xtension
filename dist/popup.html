@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="container">
     <form class="form-data" autocomplete="on">
-      <div class="enter-country">Enter pincode you need vaccination at</div>
+      <div class="enter-pincode">
+        Enter pincode you need vaccination at
+      </div>
       <div>
         <input type="text" class="pin-code" />
       </div>
@@ -20,13 +22,13 @@
       <div class="errors"></div>
       <div class="data"></div>
       <div class="result-container">
-        <p><span class="error-message"></span></p>
-        <p class="bd-top">
-          <span class="tracking"><i>Tracking in progress</i> ✅</span>
+        <p><span class="results"></span></p>
+        <p class="bd-top"><span class="tracking"><i>Tracking in progress</i> ✅</span></p>
+        <p><span class="results noSlots"></span></p>
+        <p style="text-decoration: underline;">Last found slots</p>
+        <p>
+          <strong>Available at: </strong> <span class="available"></span>
         </p>
-        <p><span class="error-message noSlots"></span></p>
-        <p style="text-decoration: underline">Last found slots</p>
-        <p><strong>Available at: </strong> <span class="available"></span></p>
         <p><strong>Slots: </strong><span class="slots"></span></p>
       </div>
     </div>

@@ -1,38 +1,38 @@
-const api =
-  "https://cdn-api.co-vin.in/api​/v2​/appointment​/sessions​/public​/calendarByPin";
+const api = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByPin";
 
-const getCurrentDate = () => {
-  let currentDate = new Date();
-  let dd = String(currentDate.getDate()).padStart(2, "0");
-  let mm = String(currentDate.getMonth() + 1).padStart(2, "0");
-  let yyyy = currentDate.getFullYear();
+const getToday = () => {
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
 
-  currentDate = dd + "-" + mm + "-" + yyyy;
-  return currentDate;
+  today = dd + "-" + mm + "-" + yyyy;
+  return today;
 };
 
-const searchByPin = (pincode) => {
-  const currentDate = getCurrentDate();
-  const params = "?pincode=" + pincode + "&date=" + currentDate;
-
+// searching slots by pin code
+// this function exists in the popup script too
+// need to find a way to make this modular
+// not able to find backgound using popup function
+const searchForStock = (pin) => {
+  const today = getToday();
+  const params = "?pincode=" + pin + "&date=" + today;
   try {
-    let xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-      if (xhr.readyState == xhr.DONE) {
-        let responseData = xhr.response;
-        responseData = JSON.parse(responseData);
-        responseData.centers.forEach((center) => {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        let responseText = xhr.response;
+        let response = JSON.parse(responseText);
+        response.centers.forEach((center) => {
           center.sessions.forEach((session) => {
             if (session.min_age_limit >= 18 && session.available_capacity > 0) {
-              var audio = new Audio(
-                chrome.runtime.getURL("./notification.mp3")
-              );
-              audio.play();
+              // alert sound
+              var myAudio = new Audio(chrome.runtime.getURL("/notification.mp3"));
+              myAudio.play();
 
-              chrome.storage.local.set({
-                last_slot_found: { center: center, session: session },
-              });
+              chrome.storage.sync.set({ last_found_slot: { center: center, session: session } });
 
+              //   alert and make a sound
               if (
                 window.confirm(
                   "A new slot was found!" +
@@ -49,12 +49,10 @@ const searchByPin = (pincode) => {
                     center.fee_type +
                     ")" +
                     "\n" +
-                    "Click ok to open cowin login page"
+                    "Click ok to open covin login page"
                 )
               ) {
-                chrome.browserAction.onClicked.addListener(function (
-                  activeTab
-                ) {
+                chrome.browserAction.onClicked.addListener(function (activeTab) {
                   var newURL = "https://selfregistration.cowin.gov.in/";
                   chrome.tabs.create({ url: newURL });
                 });
@@ -65,7 +63,7 @@ const searchByPin = (pincode) => {
       }
     };
     xhr.open("GET", api + params, true);
-    xhr.send();
+    xhr.send(null);
     chrome.storage.sync.set(
       { last_run: "No slots found yet. Last run on: " + new Date() },
       function () {
@@ -73,11 +71,11 @@ const searchByPin = (pincode) => {
       }
     );
   } catch (error) {
+    console.log(error);
     chrome.storage.sync.set(
       {
         last_run:
-          "There was an error in the last check. No slots found yet. Last run on: " +
-          new Date(),
+          "There was an error in the last check. No slots found yet. Last run on: " + new Date(),
       },
       function () {
         console.log("Last run saved");
@@ -85,3 +83,11 @@ const searchByPin = (pincode) => {
     );
   }
 };
+
+chrome.alarms.onAlarm.addListener(function (alarm) {
+  chrome.storage.sync.get(["pin_code"], function (items) {
+    if (items) {
+      if (items.pin_code) searchForStock(items.pin_code);
+    }
+  });
+});
