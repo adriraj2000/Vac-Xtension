@@ -53,8 +53,7 @@ const searchForStock = (pin) => {
                 )
               ) {
                 chrome.browserAction.onClicked.addListener(function (activeTab) {
-                  var newURL = "https://selfregistration.cowin.gov.in/";
-                  chrome.tabs.create({ url: newURL });
+                  chrome.tabs.create({ url: 'https://selfregistration.cowin.gov.in/' });
                 });
               }
             }

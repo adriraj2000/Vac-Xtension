@@ -3,7 +3,7 @@
   "name": "Vac-xtension",
   "version": "0.1.0",
 
-  "permissions": ["<all_urls>", "alarms", "storage"],
+  "permissions": ["<all_urls>", "alarms", "storage","tabs","activeTab"],
 
   "background": {
     "scripts": ["background.js"]
