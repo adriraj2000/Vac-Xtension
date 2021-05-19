@@ -48,7 +48,7 @@ const searchForStock = (pin) => {
     responseData.centers.forEach((center) => {
       center.sessions.forEach((session) => {
         if (session.min_age_limit >= 18 && session.available_capacity > 0) {
-          var myAudio = new Audio(chrome.runtime.getURL("/notification.mp3"));
+          var myAudio = new Audio(chrome.runtime.getURL("./notification.mp3"));
           myAudio.play();
 
           chrome.storage.sync.set({

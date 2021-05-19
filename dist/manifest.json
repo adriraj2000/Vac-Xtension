@@ -1,19 +1,14 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Vac-xtension",
   "version": "1.0",
-  "host_permissions":["<all_urls>"],
-  "permissions": ["alarms", "storage","tabs","activeTab"],
+  "permissions": ["<all_urls>","alarms", "storage","tabs","activeTab"],
 
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
-  "action":{
-    "default_icon": {              
-      "16": "vaccine.png",   
-      "128": "vaccine.png",   
-      "48": "vaccine.png"    
-    },
+  "browser_action":{
+    "default_icon": "vaccine.png",
     "default_popup": "popup.html"
   }
 }
