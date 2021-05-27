@@ -1,4 +1,5 @@
 # Vac-Xtension
+![Demo](Demo.gif)
 
 A chrome extension handy for checking vaccination slots for a given pin code at any point of the day.
 Using the Cowin API (https://apisetu.gov.in/public/api/cowin) for fetching the vaccination centres.
