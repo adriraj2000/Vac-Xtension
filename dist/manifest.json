@@ -7,6 +7,11 @@
   "background": {
     "scripts": ["background.js"]
   },
+  "icons":{
+    "16":"vaccine.png",
+    "48":"vaccine.png",
+    "128":"vaccine.png"
+  },
   "browser_action":{
     "default_icon": "vaccine.png",
     "default_popup": "popup.html"
