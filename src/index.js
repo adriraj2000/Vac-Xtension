@@ -1,6 +1,6 @@
 import axios from "axios";
 const api =
-  "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByPin";
+  "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin";
 
 
 const body = document.querySelector(".container");

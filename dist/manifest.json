@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Vac-xtension",
   "version": "1.0",
-  "permissions": ["<all_urls>","alarms", "storage","tabs","activeTab"],
+  "permissions": ["https://*/","http://*/","alarms", "storage","tabs","activeTab"],
 
   "background": {
     "scripts": ["background.js"]
