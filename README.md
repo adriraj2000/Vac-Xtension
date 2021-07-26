@@ -1,4 +1,8 @@
 # Vac-Xtension
+
+### Chrome Extension Link
+https://cutt.ly/MQeI8KY
+
 ![Demo](Demo.gif)
 
 A chrome extension handy for checking vaccination slots for a given pin code at any point of the day.
